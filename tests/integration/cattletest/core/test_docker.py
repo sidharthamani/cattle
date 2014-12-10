@@ -552,6 +552,21 @@ def test_docker_mount_life_cycle(client, admin_client, docker_context):
     check_mounts(c, 'removed', 2)
 
 
+def test_attach_stdin(client, admin_client, docker_context):
+    uuid = TEST_IMAGE_UUID
+
+    c = admin_client.create_container(name="attach_stdin_test",
+                                      imageUuid=uuid,
+                                      startOnCreate=False,
+                                      attachStdin=True)
+
+    c = admin_client.wait_success(c)
+    c = admin_client.wait_success(c.start())
+
+    assert c.data['dockerInspect']['Config']['OpenStdin']
+
+
+
 def _check_path(volume, should_exist, admin_client):
     path = _path_to_volume(volume)
     c = admin_client. \

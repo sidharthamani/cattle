@@ -597,7 +597,8 @@ def test_container_auth(admin_client, client):
         'ports': 'cr',
         'publishAllPorts': 'cr',
         'dataVolumes': 'cr',
-        'dataVolumesFrom': 'cr'
+        'dataVolumesFrom': 'cr',
+        'attachStdin': 'cr'
     })
 
     auth_check(client.schema, 'container', 'crud', {

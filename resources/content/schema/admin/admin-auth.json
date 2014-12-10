@@ -59,6 +59,7 @@
         "container.uuid" : "r",
         "container.dataVolumes" : "cr",
         "container.dataVolumesFrom" : "cr",
+        "container.attachStdin" : "cr",
 
         "containerExec.attachStdin" : "cr",
         "containerExec.attachStdout" : "cr",

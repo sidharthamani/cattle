@@ -17,6 +17,11 @@
         "dataVolumesFrom": {
             "type" : "array[reference[container]]",
             "nullable" : true
+        },
+        "attachStdin": {
+            "type" : "boolean",
+            "nullable" : false,
+            "default": false
         }
     },
     "resourceActions": {
