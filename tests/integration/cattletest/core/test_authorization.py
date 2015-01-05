@@ -18,8 +18,8 @@ def test_instance_link_auth(admin_client, client):
         'targetInstanceId': 'ru',
     })
 
-    auth_check(token_client.schema, 'instanceLink', 'ru', {
-        'token': 'cr',
-        'schema': 'r',
+def test_token_client(token_client):
+    auth_check(token_client.schema, 'token', 'cr', {
+        'jwt': 'r',
     })
 
