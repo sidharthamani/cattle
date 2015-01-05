@@ -17,3 +17,9 @@ def test_instance_link_auth(admin_client, client):
         'linkName': 'r',
         'targetInstanceId': 'ru',
     })
+
+    auth_check(token_client.schema, 'instanceLink', 'ru', {
+        'token': 'cr',
+        'schema': 'r',
+    })
+

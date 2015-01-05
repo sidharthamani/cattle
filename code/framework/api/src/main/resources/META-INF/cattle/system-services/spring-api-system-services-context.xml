@@ -16,6 +16,7 @@
             <set>
                 <value>typeDocumentation</value>
                 <value>scripts</value>
+                <value>token</value>
             </set>
         </property>
     </bean>
