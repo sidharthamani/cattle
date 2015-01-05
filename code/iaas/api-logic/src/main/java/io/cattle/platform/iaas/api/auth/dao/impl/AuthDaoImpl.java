@@ -3,12 +3,16 @@ package io.cattle.platform.iaas.api.auth.dao.impl;
 import static io.cattle.platform.core.model.tables.CredentialTable.*;
 import static io.cattle.platform.core.model.tables.AccountTable.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import com.netflix.config.DynamicStringListProperty;
 
 import io.cattle.platform.archaius.util.ArchaiusUtil;
 import io.cattle.platform.core.constants.CommonStatesConstants;
+import io.cattle.platform.core.dao.GenericResourceDao;
 import io.cattle.platform.core.model.Account;
 import io.cattle.platform.core.model.tables.records.AccountRecord;
 import io.cattle.platform.db.jooq.dao.impl.AbstractJooqDao;
@@ -19,6 +23,7 @@ public class AuthDaoImpl extends AbstractJooqDao implements AuthDao {
 
     private DynamicStringListProperty SUPPORTED_TYPES = ArchaiusUtil.getList("account.by.key.credential.types");
 
+    GenericResourceDao resourceDao;
     ObjectManager objectManager;
     
     @Override
@@ -59,11 +64,12 @@ public class AuthDaoImpl extends AbstractJooqDao implements AuthDao {
     
     @Override
     public Account createAccount(String name, String kind, String externalId, String externalType) {
-        return objectManager.create(Account.class,
-                            ACCOUNT.NAME, name,
-                            ACCOUNT.KIND, kind,
-                            ACCOUNT.EXTERNAL_ID, externalId,
-                            ACCOUNT.EXTERNAL_ID_TYPE, externalType);
+        Map<String, Object> properties =  new HashMap<>();
+        properties.put(ACCOUNT.NAME.toString(), name);
+        properties.put(ACCOUNT.KIND.toString(), kind);
+        properties.put(ACCOUNT.EXTERNAL_ID.toString(), externalId);
+        properties.put(ACCOUNT.EXTERNAL_ID_TYPE.toString(), externalType);
+        return resourceDao.createAndSchedule(Account.class, properties);
     }
     
     public ObjectManager getObjectManager() {
@@ -73,6 +79,15 @@ public class AuthDaoImpl extends AbstractJooqDao implements AuthDao {
     @Inject
     public void setObjectManager(ObjectManager objectManager) {
         this.objectManager = objectManager;
+    }
+    
+    public GenericResourceDao getGenericResourceDao() {
+        return resourceDao;
+    }
+    
+    @Inject
+    public void setGenericResourceDao(GenericResourceDao resourceDao) {
+        this.resourceDao = resourceDao;
     }
 
 }

@@ -34,6 +34,8 @@
 			<bean class="io.cattle.platform.iaas.api.auth.github.GithubTokenHandler"/>
 		</property>
 	</bean>
+	
+	<bean class="io.cattle.platform.iaas.api.auth.dao.impl.AuthDaoImpl" />
 
     <bean class="io.cattle.platform.extension.api.dot.DotMaker" >
         <property name="processDefinitions" value="#{extensionManager.list('process.definition')}" />

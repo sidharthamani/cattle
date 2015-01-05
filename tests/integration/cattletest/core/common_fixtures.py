@@ -101,9 +101,11 @@ def client(accounts):
 def admin_client(accounts):
     return _client_for_user('admin', accounts)
 
+
 @pytest.fixture(scope='session')
 def token_client(accounts):
     return _client_for_user('token', accounts)
+
 
 @pytest.fixture(scope='session')
 def sim_context(request, admin_client):
