@@ -29,6 +29,12 @@
         <property name="processDefinitions" value="#{extensionManager.list('process.definition')}" />
     </bean>
 
+	<bean class="io.cattle.platform.iaas.api.auth.github.TokenResourceManager" >
+		<property name="githubTokenHandler">
+			<bean class="io.cattle.platform.iaas.api.auth.github.GithubTokenHandler"/>
+		</property>
+	</bean>
+
     <bean class="io.cattle.platform.extension.api.dot.DotMaker" >
         <property name="processDefinitions" value="#{extensionManager.list('process.definition')}" />
     </bean>
