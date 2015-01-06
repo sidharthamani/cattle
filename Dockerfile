@@ -1,7 +1,6 @@
-FROM rancher/docker-dind-base:latest
+FROM rancher/build-cattle:v0.2.1
 COPY ./scripts/bootstrap /scripts/bootstrap
 RUN /scripts/bootstrap
 WORKDIR /source
-RUN mkdir -p /usr/src/cattle; cd /usr/src/cattle; git clone https://github.com/cattleio/cattle.git .
-RUN cd /usr/src/cattle; mvn -DskipTests=true install || true
-RUN cd /usr/src/cattle; mvn dependency:go-offline || true
+COPY ./scripts/build-cache /scripts/build-cache
+RUN /scripts/build-cache

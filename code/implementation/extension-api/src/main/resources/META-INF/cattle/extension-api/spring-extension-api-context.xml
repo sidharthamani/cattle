@@ -16,6 +16,7 @@
                 <value>io.cattle.platform.extension.api.model.ProcessDefinitionApi</value>
                 <value>io.cattle.platform.extension.api.model.ResourceDefinition</value>
                 <value>io.cattle.platform.engine.process.StateTransition</value>
+                <value>io.cattle.platform.iaas.api.auth.github.Token</value>
             </list>
         </property>
     </bean>
@@ -27,6 +28,14 @@
     <bean class="io.cattle.platform.extension.api.manager.ResourceDefinitionManager" >
         <property name="processDefinitions" value="#{extensionManager.list('process.definition')}" />
     </bean>
+
+	<bean class="io.cattle.platform.iaas.api.auth.github.TokenResourceManager" >
+		<property name="githubTokenHandler">
+			<bean class="io.cattle.platform.iaas.api.auth.github.GithubTokenHandler"/>
+		</property>
+	</bean>
+	
+	<bean class="io.cattle.platform.iaas.api.auth.dao.impl.AuthDaoImpl" />
 
     <bean class="io.cattle.platform.extension.api.dot.DotMaker" >
         <property name="processDefinitions" value="#{extensionManager.list('process.definition')}" />

@@ -8,4 +8,7 @@ public interface AuthDao {
 
     Account getAccountByKeys(String access, String secretKey);
 
+    Account getAccountByExternalId(String externalId, String exteralType);
+    
+    Account createAccount(String name, String kind, String externalId, String externalType);
 }
