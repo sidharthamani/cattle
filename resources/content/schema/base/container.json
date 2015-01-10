@@ -159,6 +159,10 @@
             "type": "string",
             "nullable": true
         },
+        "cpuShares": {
+            "type": "int",
+            "nullable": true
+        },
         "stdinOpen": {
             "type": "boolean",
             "default": false
@@ -173,6 +177,14 @@
         },
         "lxcConf": {
             "type": "map[string]",
+            "nullable": true       
+        },
+        "restartPolicy":{
+            "type": "json",
+            "nullable": true
+        },
+        "devices":{
+            "type":"array[string]",
             "nullable": true
         }
     }

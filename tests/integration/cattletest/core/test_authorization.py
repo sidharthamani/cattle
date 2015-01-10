@@ -17,3 +17,14 @@ def test_instance_link_auth(admin_client, client):
         'linkName': 'r',
         'targetInstanceId': 'ru',
     })
+
+
+def test_token_client(token_client):
+    auth_check(token_client.schema, 'token', 'cr', {
+        'jwt': 'r',
+        'code': 'cr',
+        'clientId': 'r',
+        'orgs': 'r',
+        'security': 'r',
+        'user': 'r'
+    })

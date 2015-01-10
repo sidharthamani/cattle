@@ -13,22 +13,21 @@ DEFAULT_AGENT_UUID = 'test-agent'
 SLEEP_DELAY = 0.5
 
 
-def _cattle_url():
-    try:
-        return os.environ['CATTLE_URL']
-    except KeyError:
-        return 'http://localhost:8080/v1/schemas'
+@pytest.fixture(scope='session')
+def cattle_url():
+    default_url = 'http://localhost:8080/v1/schemas'
+    return os.environ.get('CATTLE_URL', default_url)
 
 
 def _admin_client():
-    return cattle.from_env(url=_cattle_url(),
+    return cattle.from_env(url=cattle_url(),
                            cache=False,
                            access_key='admin',
                            secrect_key='adminpass')
 
 
 def _client_for_user(name, accounts):
-    return cattle.from_env(url=_cattle_url(),
+    return cattle.from_env(url=cattle_url(),
                            cache=False,
                            access_key=accounts[name][0],
                            secret_key=accounts[name][1])
@@ -70,7 +69,7 @@ def accounts():
     result = {}
     admin_client = _admin_client()
     for user_name in ['admin', 'agent', 'user', 'agentRegister', 'test',
-                      'readAdmin']:
+                      'readAdmin', 'token']:
         result[user_name] = create_user(admin_client,
                                         user_name,
                                         kind=user_name)
@@ -100,6 +99,11 @@ def client(accounts):
 @pytest.fixture(scope='session')
 def admin_client(accounts):
     return _client_for_user('admin', accounts)
+
+
+@pytest.fixture(scope='session')
+def token_client(accounts):
+    return _client_for_user('token', accounts)
 
 
 @pytest.fixture(scope='session')
