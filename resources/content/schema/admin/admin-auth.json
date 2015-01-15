@@ -67,7 +67,6 @@
         "externalHandlerExternalHandlerProcessMap" : "r",
         "externalHandlerExternalHandlerProcessMap.externalHandlerId" : "r",
         "externalHandlerExternalHandlerProcessMap.externalHandlerProcessId" : "r",
-
         "externalHandlerProcess" : "r",
 
         "githubconfig": "cru",
