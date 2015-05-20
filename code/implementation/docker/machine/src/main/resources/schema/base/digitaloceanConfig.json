@@ -1,21 +1,16 @@
 {
     "resourceFields": {
+        "accessToken": {
+            "type": "string",
+            "nullable": true
+        },
+        "backups": {
+            "type": "boolean",
+            "nullable": true
+        },
         "image": {
             "type": "string",
             "nullable": true
-        },
-        "region": {
-            "type": "string",
-            "nullable": true
-        },
-        "size": {
-            "type": "string",
-            "nullable": true
-        },
-        "accessToken": {
-            "type": "string",
-            "nullable": false,
-            "required": true
         },
         "ipv6": {
             "type": "boolean",
@@ -25,8 +20,12 @@
             "type": "boolean",
             "nullable": true
         },
-        "backups": {
-            "type": "boolean",
+        "region": {
+            "type": "string",
+            "nullable": true
+        },
+        "size": {
+            "type": "string",
             "nullable": true
         }
     }

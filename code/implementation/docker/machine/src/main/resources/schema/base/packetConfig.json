@@ -1,29 +1,27 @@
 {
     "resourceFields": {
-        "name": {
+        "apiKey": {
             "type": "string",
-            "nullable": false,
-            "minLength": 1,
-            "required": true
+            "nullable": false
         },
-        "authCertificateAuthority": {
+        "projectId": {
             "type": "string",
-            "nullable": true
+            "nullable": false
         },
-        "authKey": {
+        "os": {
             "type": "string",
             "nullable": true
         },
-        "driver": {
+        "facilityCode": {
             "type": "string",
             "nullable": true
         },
-        "extractedConfig": {
+        "plan": {
             "type": "string",
             "nullable": true
         },
-        "packetConfig": {
-            "type": "packetConfig",
+        "billingCycle": {
+            "type": "string",
             "nullable": true
         }
     }

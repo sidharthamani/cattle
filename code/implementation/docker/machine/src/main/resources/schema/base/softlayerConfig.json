@@ -1,24 +1,54 @@
 {
     "resourceFields": {
-        "accessKey": {
-            "type": "string",
-            "nullable": false,
-            "required": true
-        },
-        "secretKey": {
-            "type": "string",
-            "nullable": false,
-            "required": true
-        },
-        "vpcId": {
+        "apiEndpoint": {
             "type": "string",
             "nullable": true
         },
-        "sessionToken": {
+        "apiKey": {
             "type": "string",
             "nullable": true
         },
-        "ami": {
+        "cpu": {
+            "type": "string",
+            "nullable": true
+        },
+        "diskSize": {
+            "type": "string",
+            "nullable": true
+        },
+        "domain": {
+            "type": "string",
+            "nullable": true
+        },
+        "hostname": {
+            "type": "string",
+            "nullable": true
+        },
+        "hourlyBilling": {
+            "type": "boolean",
+            "nullable": true
+        },
+        "image": {
+            "type": "string",
+            "nullable": true
+        },
+        "localDisk": {
+            "type": "boolean",
+            "nullable": true
+        },
+        "memory": {
+            "type": "string",
+            "nullable": true
+        },
+        "privateNetOnly": {
+            "type": "boolean",
+            "nullable": true
+        },
+        "privateVlanId": {
+            "type": "string",
+            "nullable": true
+        },
+        "publicVlanId": {
             "type": "string",
             "nullable": true
         },
@@ -26,27 +56,7 @@
             "type": "string",
             "nullable": true
         },
-        "zone": {
-            "type": "string",
-            "nullable": true
-        },
-        "subnetId": {
-            "type": "string",
-            "nullable": true
-        },
-        "securityGroup": {
-            "type": "string",
-            "nullable": true
-        },
-        "instanceType": {
-            "type": "string",
-            "nullable": true
-        },
-        "rootSize": {
-            "type": "string",
-            "nullable": true
-        },
-        "iamInstanceProfile": {
+        "user": {
             "type": "string",
             "nullable": true
         }

@@ -1,28 +1,34 @@
 {
     "resourceFields": {
-        "apiKey": {
-            "type": "string",
-            "nullable": false,
-            "required": true
-        },
-        "projectId": {
-            "type": "string",
-            "nullable": false,
-            "required": true
-        },
-        "os": {
+        "authToken": {
             "type": "string",
             "nullable": true
         },
-        "facilityCode": {
+        "diskSize": {
             "type": "string",
             "nullable": true
         },
-        "plan": {
+        "diskType": {
             "type": "string",
             "nullable": true
         },
-        "billingCycle": {
+        "machineType": {
+            "type": "string",
+            "nullable": true
+        },
+        "project": {
+            "type": "string",
+            "nullable": true
+        },
+        "scopes": {
+            "type": "string",
+            "nullable": true
+        },
+        "username": {
+            "type": "string",
+            "nullable": true
+        },
+        "zone": {
             "type": "string",
             "nullable": true
         }

@@ -1,0 +1,12 @@
+{
+    "resourceFields": {
+        "apiKey": {
+            "required": true,
+            "nullable": false
+        },
+        "projectId": {
+            "required": true,
+            "nullable": false
+        }
+    }
+}

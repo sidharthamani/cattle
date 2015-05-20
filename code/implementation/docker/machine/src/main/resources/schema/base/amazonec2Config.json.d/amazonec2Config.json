@@ -1,0 +1,12 @@
+{
+    "resourceFields": {
+        "accessKey": {
+            "required": true,
+            "nullable": false
+        },
+        "secretKey": {
+            "required": true,
+            "nullable": false
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "resourceFields": {
+        "apiKey": {
+            "type": "string",
+            "nullable": true
+        },
+        "apiSecretKey": {
+            "type": "string",
+            "nullable": true
+        },
+        "availabilityZone": {
+            "type": "string",
+            "nullable": true
+        },
+        "diskSize": {
+            "type": "string",
+            "nullable": true
+        },
+        "image": {
+            "type": "string",
+            "nullable": true
+        },
+        "instanceProfile": {
+            "type": "string",
+            "nullable": true
+        },
+        "keypair": {
+            "type": "string",
+            "nullable": true
+        },
+        "securityGroup": {
+            "type": "string",
+            "nullable": true
+        },
+        "url": {
+            "type": "string",
+            "nullable": true
+        }
+    }
+}
