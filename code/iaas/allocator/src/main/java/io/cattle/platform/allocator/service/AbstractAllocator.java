@@ -153,6 +153,7 @@ public abstract class AbstractAllocator implements Allocator {
 
         final Set<Host> hosts = new HashSet<Host>(allocatorDao.getHosts(instance));
         final Set<Volume> volumes = new HashSet<Volume>(objectManager.children(instance, Volume.class));
+        volumes.addAll(extractVolumes(instance));
         final Map<Volume, Set<StoragePool>> pools = new HashMap<Volume, Set<StoragePool>>();
 
         for (Volume v : volumes) {
@@ -179,6 +180,22 @@ public abstract class AbstractAllocator implements Allocator {
         });
     }
 
+    private List<Volume> extractVolumes(Instance instance) {
+        List<Volume> volumes = new ArrayList<Volume>();
+
+        Map<String, Object> dataVolumeMounts = DataAccessor.fieldMap(instance, InstanceConstants.FIELD_DATA_VOLUME_MOUNTS);
+
+        if (dataVolumeMounts != null) {
+            for (Map.Entry<String, Object> entry : dataVolumeMounts.entrySet()) {
+                Volume v = objectManager.loadResource(Volume.class, ((Number) entry.getValue()).longValue());
+                if (v != null) {
+                    volumes.add(v);
+                }
+            }
+        }
+        return volumes;
+    }
+    
     protected boolean deallocateVolume(AllocationRequest request) {
         final Volume volume = objectManager.loadResource(Volume.class, request.getResourceId());
         Boolean stateCheck = AllocatorUtils.checkDeallocateState(request.getResourceId(), volume.getAllocationState(), "Volume");

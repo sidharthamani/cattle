@@ -20,12 +20,14 @@ import io.cattle.platform.object.util.DataAccessor;
 import io.cattle.platform.process.base.AbstractDefaultProcessHandler;
 import io.cattle.platform.process.containerevent.ContainerEventCreate;
 import io.cattle.platform.process.progress.ProcessProgress;
+import io.cattle.platform.process.util.InstanceHelpers;
 import io.cattle.platform.util.exception.ExecutionException;
 import io.cattle.platform.util.type.CollectionUtils;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -168,6 +170,8 @@ public class InstanceStart extends AbstractDefaultProcessHandler {
 
     protected void storage(Instance instance, ProcessState state) {
         List<Volume> volumes = getObjectManager().children(instance, Volume.class);
+
+        volumes.addAll(InstanceHelpers.extractVolumesFromMounts(instance, objectManager));
 
         for (Volume volume : volumes) {
             activate(volume, state.getData());

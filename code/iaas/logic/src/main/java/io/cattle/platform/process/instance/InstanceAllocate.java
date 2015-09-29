@@ -20,6 +20,7 @@ import io.cattle.platform.engine.process.ProcessState;
 import io.cattle.platform.eventing.EventService;
 import io.cattle.platform.object.util.DataAccessor;
 import io.cattle.platform.process.common.handler.EventBasedProcessHandler;
+import io.cattle.platform.process.util.InstanceHelpers;
 import io.cattle.platform.util.type.CollectionUtils;
 
 import java.util.HashMap;
@@ -55,7 +56,7 @@ public class InstanceAllocate extends EventBasedProcessHandler {
     public HandlerResult handle(ProcessState state, ProcessInstance process) {
         // Check resourceType for instance and whether the host is a cluster or not.
         // If resourceType is a cluster (host), do not bother with normal allocation process.
-        final Instance instance = (Instance)state.getResource();
+        final Instance instance = (Instance) state.getResource();
 
         // check requestedHostId to see whether it's a cluster or not
         Long requestedHostId = DataAccessor.fields(instance).withKey(InstanceConstants.FIELD_REQUESTED_HOST_ID).as(Long.class);
@@ -109,12 +110,16 @@ public class InstanceAllocate extends EventBasedProcessHandler {
         }
 
         List<Volume> volumes = getObjectManager().children(instance, Volume.class);
+        List<Volume> dataMountVolumes = InstanceHelpers.extractVolumesFromMounts(instance, getObjectManager());
+        volumes.addAll(dataMountVolumes);
 
         for (Volume v : volumes) {
             allocate(v, state.getData());
         }
 
         volumes = getObjectManager().children(instance, Volume.class);
+        volumes.addAll(dataMountVolumes);
+        
         for (Volume v : volumes) {
             for (VolumeStoragePoolMap map : mapDao.findNonRemoved(VolumeStoragePoolMap.class, Volume.class, v.getId())) {
                 CollectionUtils.addToMap(allocationData, "volume:" + v.getId(), map.getVolumeId(), HashSet.class);

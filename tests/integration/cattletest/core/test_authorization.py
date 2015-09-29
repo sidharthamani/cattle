@@ -569,28 +569,30 @@ def test_task_instance_auth(admin_user_client, user_client, project_client):
 
 
 def test_volume_auth(admin_user_client, user_client, project_client):
-    auth_check(admin_user_client.schema, 'volume', 'r', {
+    auth_check(admin_user_client.schema, 'volume', 'crd', {
         'accountId': 'r',
         'created': 'r',
         'data': 'r',
-        'description': 'r',
+        'description': 'cr',
         'id': 'r',
         'imageId': 'r',
         'instanceId': 'r',
         'kind': 'r',
-        'name': 'r',
+        'name': 'cr',
         'removeTime': 'r',
         'removed': 'r',
         'state': 'r',
         'uri': 'r',
         'uuid': 'r',
+        'driver': 'cr',
+        'driverOpts': 'cr',
         'transitioning': 'r',
         'transitioningMessage': 'r',
         'transitioningProgress': 'r',
         'isHostPath': 'r'
     })
 
-    auth_check(user_client.schema, 'volume', 'r', {
+    auth_check(user_client.schema, 'volume', 'crd', {
         'accountId': 'r',
         'created': 'r',
         'description': 'r',
@@ -598,30 +600,34 @@ def test_volume_auth(admin_user_client, user_client, project_client):
         'imageId': 'r',
         'instanceId': 'r',
         'kind': 'r',
-        'name': 'r',
+        'name': 'cr',
         'removed': 'r',
         'state': 'r',
         'uri': 'r',
         'uuid': 'r',
+        'driver': 'r',
+        'driverOpts': 'r',
         'transitioning': 'r',
         'transitioningMessage': 'r',
         'transitioningProgress': 'r',
         'isHostPath': 'r'
     })
 
-    auth_check(project_client.schema, 'volume', 'rd', {
+    auth_check(project_client.schema, 'volume', 'crd', {
         'accountId': 'r',
         'created': 'r',
-        'description': 'r',
+        'description': 'cr',
         'id': 'r',
         'imageId': 'r',
         'instanceId': 'r',
         'kind': 'r',
-        'name': 'r',
+        'name': 'cr',
         'removed': 'r',
         'state': 'r',
         'uri': 'r',
         'uuid': 'r',
+        'driver': 'cr',
+        'driverOpts': 'cr',
         'transitioning': 'r',
         'transitioningMessage': 'r',
         'transitioningProgress': 'r',
@@ -644,6 +650,7 @@ def test_container_auth(admin_user_client, user_client, project_client):
         'created': 'r',
         'data': 'r',
         'dataVolumes': 'r',
+        'dataVolumeMounts': 'r',
         'dataVolumesFrom': 'r',
         'description': 'r',
         'devices': 'r',
@@ -704,6 +711,7 @@ def test_container_auth(admin_user_client, user_client, project_client):
         'cpuShares': 'r',
         'created': 'r',
         'dataVolumes': 'r',
+        'dataVolumeMounts': 'r',
         'dataVolumesFrom': 'r',
         'description': 'r',
         'devices': 'r',
@@ -763,6 +771,7 @@ def test_container_auth(admin_user_client, user_client, project_client):
         'created': 'r',
         'dataVolumes': 'cr',
         'dataVolumesFrom': 'cr',
+        'dataVolumeMounts': 'cr',
         'description': 'cru',
         'devices': 'cr',
         'workingDir': 'cr',
