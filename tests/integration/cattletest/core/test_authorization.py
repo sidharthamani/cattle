@@ -569,30 +569,30 @@ def test_task_instance_auth(admin_user_client, user_client, project_client):
 
 
 def test_volume_auth(admin_user_client, user_client, project_client):
-    auth_check(admin_user_client.schema, 'volume', 'crd', {
+    auth_check(admin_user_client.schema, 'volume', 'r', {
         'accountId': 'r',
         'created': 'r',
         'data': 'r',
-        'description': 'cr',
+        'description': 'r',
         'id': 'r',
         'imageId': 'r',
         'instanceId': 'r',
         'kind': 'r',
-        'name': 'cr',
+        'name': 'r',
         'removeTime': 'r',
         'removed': 'r',
         'state': 'r',
         'uri': 'r',
         'uuid': 'r',
-        'driver': 'cr',
-        'driverOpts': 'cr',
+        'driver': 'r',
+        'driverOpts': 'r',
         'transitioning': 'r',
         'transitioningMessage': 'r',
         'transitioningProgress': 'r',
         'isHostPath': 'r'
     })
 
-    auth_check(user_client.schema, 'volume', 'crd', {
+    auth_check(user_client.schema, 'volume', 'r', {
         'accountId': 'r',
         'created': 'r',
         'description': 'r',
@@ -600,7 +600,7 @@ def test_volume_auth(admin_user_client, user_client, project_client):
         'imageId': 'r',
         'instanceId': 'r',
         'kind': 'r',
-        'name': 'cr',
+        'name': 'r',
         'removed': 'r',
         'state': 'r',
         'uri': 'r',

@@ -194,7 +194,7 @@ public class DockerTransformerImpl implements DockerTransformer {
     }
 
     void setNetworkMode(Instance instance, ContainerConfig containerConfig, HostConfig hostConfig) {
-        if (DataAccessor.fields(instance).withKey(FIELD_NETWORK_MODE).get() != null)
+        if(DataAccessor.fields(instance).withKey(FIELD_NETWORK_MODE).get() != null)
             return;
 
         String netMode = null;

@@ -1,6 +1,6 @@
 package io.cattle.platform.process.instance;
 
-import static io.cattle.platform.core.model.tables.InstanceHostMapTable.INSTANCE_HOST_MAP;
+import static io.cattle.platform.core.model.tables.InstanceHostMapTable.*;
 import io.cattle.platform.core.constants.ClusterConstants;
 import io.cattle.platform.core.constants.CommonStatesConstants;
 import io.cattle.platform.core.constants.InstanceConstants;
@@ -14,13 +14,13 @@ import io.cattle.platform.core.model.Nic;
 import io.cattle.platform.core.model.Subnet;
 import io.cattle.platform.core.model.Volume;
 import io.cattle.platform.core.model.VolumeStoragePoolMap;
+import io.cattle.platform.core.util.InstanceHelpers;
 import io.cattle.platform.engine.handler.HandlerResult;
 import io.cattle.platform.engine.process.ProcessInstance;
 import io.cattle.platform.engine.process.ProcessState;
 import io.cattle.platform.eventing.EventService;
 import io.cattle.platform.object.util.DataAccessor;
 import io.cattle.platform.process.common.handler.EventBasedProcessHandler;
-import io.cattle.platform.process.util.InstanceHelpers;
 import io.cattle.platform.util.type.CollectionUtils;
 
 import java.util.HashMap;
@@ -56,7 +56,7 @@ public class InstanceAllocate extends EventBasedProcessHandler {
     public HandlerResult handle(ProcessState state, ProcessInstance process) {
         // Check resourceType for instance and whether the host is a cluster or not.
         // If resourceType is a cluster (host), do not bother with normal allocation process.
-        final Instance instance = (Instance) state.getResource();
+        final Instance instance = (Instance)state.getResource();
 
         // check requestedHostId to see whether it's a cluster or not
         Long requestedHostId = DataAccessor.fields(instance).withKey(InstanceConstants.FIELD_REQUESTED_HOST_ID).as(Long.class);

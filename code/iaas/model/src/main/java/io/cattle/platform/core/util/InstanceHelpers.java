@@ -1,4 +1,4 @@
-package io.cattle.platform.process.util;
+package io.cattle.platform.core.util;
 
 import io.cattle.platform.core.constants.InstanceConstants;
 import io.cattle.platform.core.model.Instance;
